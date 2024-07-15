@@ -44,7 +44,7 @@ class ReportResultMergeTest extends ReportGenerator {
     private static final String ALL_PASSED = TIMESTAMPED + "all-passed.json";
     private static final String PART_ONE = TIMESTAMPED + "part1.json";
     private static final String PART_TWO = TIMESTAMPED + "part2.json";
-    private static final String PART_TWO_RERUN_FAILED = TIMESTAMPED + "part2-rerun-failed.json";
+    private static final String PART2_RERUN_FAIL = TIMESTAMPED + "part2-rerun-failed.json";
     private static final String PART_TWO_RERUN_PASSED = TIMESTAMPED + "part2-rerun-passed.json";
 
     class AllInOneReport extends ReportGenerator {
@@ -99,7 +99,7 @@ class ReportResultMergeTest extends ReportGenerator {
     void parsePartOneTwo_WithFailedRerun() {
         // given
         configuration.addReducingMethod(MERGE_FEATURES_WITH_RETEST);
-        setUpWithJson(PART_ONE, PART_TWO, PART_TWO_RERUN_FAILED);
+        setUpWithJson(PART_ONE, PART_TWO, PART2_RERUN_FAIL);
 
         // when
         Reportable current = reportResult.getFeatureReport();
@@ -113,7 +113,7 @@ class ReportResultMergeTest extends ReportGenerator {
     void merge_PartOneTwo_WithFailedRerun_Equals_AllInOneFailed() {
         // given
         configuration.addReducingMethod(MERGE_FEATURES_WITH_RETEST);
-        setUpWithJson(PART_ONE, PART_TWO, PART_TWO_RERUN_FAILED);
+        setUpWithJson(PART_ONE, PART_TWO, PART2_RERUN_FAIL);
         ReportResult allInOneFailed = new AllInOneReport(ALL_FAILED).getReportResult();
 
         // when

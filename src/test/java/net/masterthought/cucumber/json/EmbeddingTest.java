@@ -17,38 +17,43 @@ public class EmbeddingTest {
 
     public static Iterable<Object[]> data() {
         return asList(new Object[][] {
-            { "application/ecmascript", "console.log('Hello world');", NO_DECODING, ".es" },
-            { "application/gzip", "c29tZSBkYXRh", "some data", "embedding_-1003041823.gz" },
-            { "application/javascript", "alert('Hello World!');", NO_DECODING, ".js" },
-            { "application/json", "c29tZSBkYXRh", "some data", "embedding_-1003041823.json" },
-            { "application/pdf", "c29tZSBkYXRh", "some data", "embedding_-1003041823.pdf" },
-            { "application/vnd.ms-excel", "c29tZSBkYXRh", "some data", "embedding_-1003041823.xls" },
-            { "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "c29tZSBkYXRh", "some data", "embedding_-1003041823.xlsx" },
-            { "application/vnd.tcpdump.pcap", "c29tZSBkYXRh", "some data", "embedding_-1003041823.unknown" },
-            { "application/xml", "c29tZSBkYXRh", "some data", "embedding_-1003041823.xml" },
-            { "application/xslt+xml", "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" />", NO_DECODING, ".xslt" },
-            { "application/x-bzip2", "c29tZSBkYXRh", "some data", "embedding_-1003041823.bz2" },
-            { "application/x-tar", "c29tZSBkYXRh", "some data", "embedding_-1003041823.tar" },
-            { "application/zip", "c29tZSBkYXRh", "some data", "embedding_-1003041823.zip" },
-            { "image/bmp", "c29tZSBkYXRh", "some data", "embedding_-1003041823.bmp" },
-            { "image/gif", "c29tZSBkYXRh", "some data", "embedding_-1003041823.gif" },
-            { "image/jpeg", "c29tZSBkYXRh", "some data", "embedding_-1003041823.jpeg" },
-            { "image/png", "c29tZSBkYXRh", "some data", "embedding_-1003041823.png" },
-            { "image/svg", "c29tZSBkYXRh", "some data", "embedding_-1003041823.svg" },
-            { "image/svg+xml", "c29tZSBkYXRh", "some data", "embedding_-1003041823.svg" },
-            { "image/url", "c29tZSBkYXRh", "some data", "embedding_-1003041823.image" },
-            { "js", "c29tZSBkYXRh", "some data", "embedding_-1003041823.unknown" },
-            { "mime/type", "your data", NO_DECODING, ".type" },
-            { "mime/type", "ZnVuY3Rpb24gbG9nZ2VyKG1lc3NhZ2UpIHsgIH0=", "function logger(message) {  }", ".type" },
-            { "my mime TYPE", "abc", NO_DECODING, ".unknown" },
-            { "text/html", "<html />", NO_DECODING, ".html" },
-            { "text/html; charset=UTF-8", "c29tZSBkYXRh", "some data", "embedding_-1003041823.html" },
-            { "text/php", "echo 'Hello World!';", NO_DECODING, ".php" },
-            { "text/plain", "c29tZSBkYXRh", "some data", "embedding_-1003041823.txt" },
-            { "text/xml", "c29tZSBkYXRh", "some data", "embedding_-1003041823.xml" },
-            { "video/mp4", "c29tZSBkYXRh", "some data", "embedding_-1003041823.mp4" },
+            createTestCase("application/ecmascript", "console.log('Hello world');", NO_DECODING, ".es"),
+            createTestCase("application/gzip", "c29tZSBkYXRh", "some data", "embedding_-1003041823.gz"),
+            createTestCase("application/javascript", "alert('Hello World!');", NO_DECODING, ".js"),
+            createTestCase("application/json", "c29tZSBkYXRh", "some data", "embedding_-1003041823.json"),
+            createTestCase("application/pdf", "c29tZSBkYXRh", "some data", "embedding_-1003041823.pdf"),
+            createTestCase("application/vnd.ms-excel", "c29tZSBkYXRh", "some data", "embedding_-1003041823.xls"),
+            createTestCase("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "c29tZSBkYXRh", "some data", "embedding_-1003041823.xlsx"),
+            createTestCase("application/vnd.tcpdump.pcap", "c29tZSBkYXRh", "some data", "embedding_-1003041823.unknown"),
+            createTestCase("application/xml", "c29tZSBkYXRh", "some data", "embedding_-1003041823.xml"),
+            createTestCase("application/xslt+xml", "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" />", NO_DECODING, ".xslt"),
+            createTestCase("application/x-bzip2", "c29tZSBkYXRh", "some data", "embedding_-1003041823.bz2"),
+            createTestCase("application/x-tar", "c29tZSBkYXRh", "some data", "embedding_-1003041823.tar"),
+            createTestCase("application/zip", "c29tZSBkYXRh", "some data", "embedding_-1003041823.zip"),
+            createTestCase("image/bmp", "c29tZSBkYXRh", "some data", "embedding_-1003041823.bmp"),
+            createTestCase("image/gif", "c29tZSBkYXRh", "some data", "embedding_-1003041823.gif"),
+            createTestCase("image/jpeg", "c29tZSBkYXRh", "some data", "embedding_-1003041823.jpeg"),
+            createTestCase("image/png", "c29tZSBkYXRh", "some data", "embedding_-1003041823.png"),
+            createTestCase("image/svg", "c29tZSBkYXRh", "some data", "embedding_-1003041823.svg"),
+            createTestCase("image/svg+xml", "c29tZSBkYXRh", "some data", "embedding_-1003041823.svg"),
+            createTestCase("image/url", "c29tZSBkYXRh", "some data", "embedding_-1003041823.image"),
+            createTestCase("js", "c29tZSBkYXRh", "some data", "embedding_-1003041823.unknown"),
+            createTestCase("mime/type", "your data", NO_DECODING, ".type"),
+            createTestCase("mime/type", "ZnVuY3Rpb24gbG9nZ2VyKG1lc3NhZ2UpIHsgIH0=", "function logger(message) {  }", ".type"),
+            createTestCase("my mime TYPE", "abc", NO_DECODING, ".unknown"),
+            createTestCase("text/html", "<html />", NO_DECODING, ".html"),
+            createTestCase("text/html; charset=UTF-8", "c29tZSBkYXRh", "some data", "embedding_-1003041823.html"),
+            createTestCase("text/php", "echo 'Hello World!';", NO_DECODING, ".php"),
+            createTestCase("text/plain", "c29tZSBkYXRh", "some data", "embedding_-1003041823.txt"),
+            createTestCase("text/xml", "c29tZSBkYXRh", "some data", "embedding_-1003041823.xml"),
+            createTestCase("video/mp4", "c29tZSBkYXRh", "some data", "embedding_-1003041823.mp4"),
         });
     }
+    
+    private static Object[] createTestCase(String mimeType, String data, String decodedData, String fileName) {
+        return new Object[] { mimeType, data, decodedData, fileName };
+    }
+    
     public String mimeType;
     public String data;
     public String decodedData;

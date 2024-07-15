@@ -32,16 +32,28 @@ class ReportBuilderTest extends ReportGenerator {
 
     @BeforeEach
     void setUp() throws IOException {
-        reportDirectory = new File("target", String.valueOf(System.currentTimeMillis()));
-        // random temp directory
-        reportDirectory.mkdirs();
-        // root report directory
+        reportDirectory = createReportDirectory();
+        createRootReportDirectory(reportDirectory);
+        trendsFileTmp = refreshTrendsFile(reportDirectory);
+        copyTrendsFile(TRENDS_FILE, trendsFileTmp);
+    }
+
+    private File createReportDirectory() {
+        File directory = new File("target", String.valueOf(System.currentTimeMillis()));
+        directory.mkdirs();
+        return directory;
+    }
+
+    private void createRootReportDirectory(File reportDirectory) {
         new File(reportDirectory, ReportBuilder.BASE_DIRECTORY + configuration.getDirectorySuffixWithSeparator()).mkdir();
+    }
 
-        // refresh the file if it was already copied by another/previous test
-        trendsFileTmp = new File(reportDirectory, "trends-tmp.json");
+    private File refreshTrendsFile(File reportDirectory) {
+        return new File(reportDirectory, "trends-tmp.json");
+    }
 
-        FileUtils.copyFile(TRENDS_FILE, trendsFileTmp);
+    private void copyTrendsFile(File source, File destination) throws IOException {
+        FileUtils.copyFile(source, destination);
     }
 
     @Test
